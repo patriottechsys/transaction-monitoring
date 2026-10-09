@@ -130,6 +130,9 @@ SECRET_KEY=your-secret-key-change-in-production
 
 # Token expiration (minutes)
 ACCESS_TOKEN_EXPIRE_MINUTES=480
+
+# Shared key: Azure Key Vault kv-demo-apps-shared, secret Demo-Apps-Share-API-Key
+ANTHROPIC_API_KEY=
 ```
 
 ### Dashboard Settings

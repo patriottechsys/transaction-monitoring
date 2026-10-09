@@ -12,10 +12,14 @@ git push origin master
 
 ### 2. Get your Anthropic API Key
 
-1. Go to [https://console.anthropic.com](https://console.anthropic.com)
-2. Navigate to API Keys section
-3. Copy your API key (starts with `sk-ant-...`)
-4. **Keep it safe** - you'll need it during deployment
+The key is the shared secret `Demo-Apps-Share-API-Key` in Azure Key Vault `kv-demo-apps-shared`.
+Fetch it with:
+
+```bash
+az keyvault secret show --vault-name kv-demo-apps-shared --name Demo-Apps-Share-API-Key --subscription "Demo Apps" --query value -o tsv
+```
+
+**Keep it safe** - you'll need it during deployment
 
 ---
 
@@ -94,7 +98,7 @@ git push origin master
    | Key | Value |
    |-----|-------|
    | DATABASE_URL | (Paste Internal Database URL from Step A) |
-   | ANTHROPIC_API_KEY | (Your API key from pre-deployment) |
+   | ANTHROPIC_API_KEY | (Shared key from pre-deployment: Key Vault secret `Demo-Apps-Share-API-Key`) |
    | PYTHON_VERSION | 3.11.0 |
 
 4. Click "Create Web Service"

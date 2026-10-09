@@ -15,7 +15,7 @@ This guide walks you through deploying the Transaction Monitoring Dashboard on R
 
 1. **GitHub Account** - Your code must be in a GitHub repository
 2. **Render Account** - Sign up at [render.com](https://render.com)
-3. **Anthropic API Key** - Required for AI features
+3. **Anthropic API Key** - Required for AI features (the shared key: secret `Demo-Apps-Share-API-Key` in Azure Key Vault `kv-demo-apps-shared`)
 
 ---
 
@@ -49,7 +49,10 @@ git push origin master
 
 3. **Set Environment Variables:**
    - Render will prompt for `ANTHROPIC_API_KEY`
-   - Add your API key from [https://console.anthropic.com](https://console.anthropic.com)
+   - Use the shared key: secret `Demo-Apps-Share-API-Key` in Key Vault `kv-demo-apps-shared`. Fetch it with:
+     ```bash
+     az keyvault secret show --vault-name kv-demo-apps-shared --name Demo-Apps-Share-API-Key --subscription "Demo Apps" --query value -o tsv
+     ```
    - Click "Apply" to start deployment
 
 ### Step 4: Manual Deployment (Alternative Method)
@@ -93,7 +96,7 @@ If you prefer manual setup:
    | Key | Value |
    |-----|-------|
    | `DATABASE_URL` | (Internal connection string from your database) |
-   | `ANTHROPIC_API_KEY` | Your Anthropic API key |
+   | `ANTHROPIC_API_KEY` | Shared key from Key Vault secret `Demo-Apps-Share-API-Key` (`kv-demo-apps-shared`) |
    | `PYTHON_VERSION` | 3.11.0 |
 
 5. Click "Create Web Service"
@@ -151,7 +154,7 @@ This is handled automatically in [config/settings.py](config/settings.py:5).
 | Variable | Purpose | Where to Get |
 |----------|---------|--------------|
 | `DATABASE_URL` | PostgreSQL connection | Auto-populated by Render |
-| `ANTHROPIC_API_KEY` | AI recommendations | [console.anthropic.com](https://console.anthropic.com) |
+| `ANTHROPIC_API_KEY` | AI recommendations | Key Vault `kv-demo-apps-shared`, secret `Demo-Apps-Share-API-Key` |
 | `PYTHON_VERSION` | Python runtime | Set to `3.11.0` |
 
 ---

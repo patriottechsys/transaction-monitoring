@@ -12,6 +12,7 @@ import hashlib
 import json
 
 # Note: Using anthropic API - requires ANTHROPIC_API_KEY environment variable
+# Shared key: Azure Key Vault kv-demo-apps-shared, secret Demo-Apps-Share-API-Key
 try:
     import anthropic
     ANTHROPIC_AVAILABLE = True
@@ -57,7 +58,7 @@ class AIRecommendationEngine:
 
         try:
             message = self.client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model="claude-sonnet-5-5",
                 max_tokens=max_tokens,
                 messages=[
                     {"role": "user", "content": prompt}

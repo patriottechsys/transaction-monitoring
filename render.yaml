@@ -24,8 +24,9 @@ services:
         fromDatabase:
           name: transaction-monitoring-db
           property: connectionString
+      # Value comes from Key Vault secret Demo-Apps-Share-API-Key (kv-demo-apps-shared); set it in the Render dashboard.
       - key: ANTHROPIC_API_KEY
-        sync: false  # Add your Anthropic API key in Render dashboard
+        sync: false
 
   # Streamlit Dashboard Frontend
   - type: web
@@ -43,8 +44,9 @@ services:
         fromDatabase:
           name: transaction-monitoring-db
           property: connectionString
+      # Value comes from Key Vault secret Demo-Apps-Share-API-Key (kv-demo-apps-shared); set it in the Render dashboard.
       - key: ANTHROPIC_API_KEY
-        sync: false  # Add your Anthropic API key in Render dashboard
+        sync: false
       - key: API_BASE_URL
         fromService:
           type: web
